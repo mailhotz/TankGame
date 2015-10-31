@@ -52,4 +52,12 @@ public class Tile {
 	public long getVal(){
 		return value;
 	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public int getRow() {
+		return row;
+	}
 }

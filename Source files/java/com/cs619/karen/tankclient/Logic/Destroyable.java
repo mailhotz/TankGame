@@ -1,5 +1,7 @@
 package com.cs619.karen.tankclient.Logic;
 
+import java.util.Iterator;
+
 /**
  * Created by Eric on 10/24/2015.
  * Destroyable.java
@@ -10,7 +12,7 @@ package com.cs619.karen.tankclient.Logic;
  
  public class Destroyable extends Tile{
 	//--------------------- instance vars -----------------------//
-	private int hp = 100;
+	private int hp = 0;
 	private boolean isDes = false;
 	//-----------------------------------------------------------//
 	//----------------------- Constructors ----------------------//
@@ -21,6 +23,11 @@ package com.cs619.karen.tankclient.Logic;
 	//Takes an integer
 	public Destroyable( int i ){
 		super(i);
+		String temp = "" + i;
+		if( temp.length() > 4 )
+			hp = Integer.parseInt(temp.substring(4,7));
+		else
+			hp = Integer.parseInt(temp.substring(1,3));
 	}
 	//-----------------------------------------------------------//
 	
@@ -42,5 +49,10 @@ package com.cs619.karen.tankclient.Logic;
 	public int takeDamage(){
 		hp = hp - 10;
 		return hp;
+	}
+
+	//------------------------ setHP ----------------------------//
+	public void setHp(int i ){
+		hp = i;
 	}
  }

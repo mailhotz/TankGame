@@ -12,7 +12,8 @@ import com.cs619.karen.tankclient.Logic.Destroyable;
  
  public class Tank extends Destroyable {
 	//--------------------- instance vars -----------------------//
-	
+	long id;
+	int direction;
 	//-----------------------------------------------------------//
 	//----------------------- Constructors ----------------------//
     //Default
@@ -22,6 +23,9 @@ import com.cs619.karen.tankclient.Logic.Destroyable;
 	//Takes an int and stores it in value
 	public Tank( int i ){
 		super(i);
+		String temp = "" + i;
+		id = Integer.parseInt(temp.substring(1,4));
+		direction = Integer.parseInt(temp.substring(7,8));
 	}
 	//-----------------------------------------------------------//
 	
@@ -33,7 +37,7 @@ import com.cs619.karen.tankclient.Logic.Destroyable;
 	
 	//------------------------ rotate ---------------------------//
 	public boolean rotate( int direction) {
-	
+
 		return true;
 	}
 	
@@ -42,6 +46,26 @@ import com.cs619.karen.tankclient.Logic.Destroyable;
 		
 		return true;
 	}
- }
+
+	//------------------------ getId ----------------------------//
+	public long getId() {
+		return id;
+	}
+
+	//------------------------ setId ----------------------------//
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	//------------------------- getDirection --------------------//
+	public int getDirection() {
+		return direction;
+	}
+
+	//------------------------- setDirection --------------------//
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+}
  
  
