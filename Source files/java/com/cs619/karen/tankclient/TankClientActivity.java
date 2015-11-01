@@ -49,7 +49,6 @@ public class TankClientActivity extends AppCompatActivity {
    //GameGrid gGrid = new GameGrid();
 
     private long tankId = -1;
-    private GameGrid gGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +118,7 @@ public class TankClientActivity extends AppCompatActivity {
     void gridAsync(){
         try{
             //Create a gameGrid that gets grid from restClient
-            gGrid = new GameGrid(restClient);
+            GameGrid gGrid = new GameGrid(restClient);
             gGrid.getID(tankId);
             gGrid.makeTGrid();
             gGrid.print();
@@ -132,7 +131,7 @@ public class TankClientActivity extends AppCompatActivity {
 
 
         }catch  (Exception e){
-            Log.d(TAG, " GridAsync has Exception: " + e.toString() );
+
         }
     }
 
@@ -143,12 +142,7 @@ public class TankClientActivity extends AppCompatActivity {
     @Click(R.id.buttonUp)
     void upClicked(){
         Log.d(TAG, "Up");
-        int move = gGrid.canMove( tankId, 0 ) ;
-        if( move == 1)
-            restClient.move(tankId, Byte.valueOf("0"));   // call the rest to move up
-        else if ( move == 0 )
-            restClient.turn(tankId, Byte.valueOf("0"));   // call the rest to rotate up
-        gridAsync();
+        restClient.move(tankId, Byte.valueOf("0"));   // call the rest to move up
     }
 
     // Async call to the rest asking to move or rotate the tank so that it
@@ -158,37 +152,21 @@ public class TankClientActivity extends AppCompatActivity {
     @Click(R.id.buttonDown)
     void downClicked(){
         Log.d(TAG, "Down");
-        int move = gGrid.canMove( tankId, 4 ) ;
-        if( move == 1)
-            restClient.move(tankId, Byte.valueOf("4"));   // call the rest to move down
-        else if ( move == 0 )
-            restClient.turn(tankId, Byte.valueOf("4"));   // call the rest to rotate down
-        gridAsync();
+        restClient.move(tankId, Byte.valueOf("4")); // call the rest to move down 8=/=D
     }
 
     @Background
     @Click(R.id.buttonLeft)
     void leftClicked(){
         Log.d(TAG, "Left");
-        int move = gGrid.canMove( tankId, 6 ) ;
-        if( move == 1)
-            restClient.move(tankId, Byte.valueOf("6"));   // call the rest to move left
-        else if ( move == 0 )
-            restClient.turn(tankId, Byte.valueOf("6"));   // call the rest to rotate left
-        gridAsync();
+        restClient.move(tankId, Byte.valueOf("6"));
     }
 
     @Background
     @Click(R.id.buttonRight)
     void rightClicked(){
         Log.d(TAG, "Right");
-
-        int move = gGrid.canMove( tankId, 2 ) ;
-        if( move == 1)
-            restClient.move(tankId, Byte.valueOf("2"));   // call the rest to move right
-        else if ( move == 0 )
-            restClient.turn(tankId, Byte.valueOf("2"));   // call the rest to rotate right
-        gridAsync();
+        restClient.move(tankId, Byte.valueOf("2"));
     }
 
     @Background

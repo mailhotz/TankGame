@@ -20,7 +20,6 @@ public class GridAdapter extends BaseAdapter {
     @SystemService
     protected LayoutInflater inflater;
     private int[][] mEntities = new int[16][16];
-    private static final String TAG = "GridAdapter";
 
 
     //TODO
